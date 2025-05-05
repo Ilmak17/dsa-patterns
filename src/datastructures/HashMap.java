@@ -1,6 +1,5 @@
 package datastructures;
 
-
 public class HashMap<K, V> {
     private static final int INITIAL_CAPACITY = 16;
     private static final double LOAD_FACTOR = 0.75;
