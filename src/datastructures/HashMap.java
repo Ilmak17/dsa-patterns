@@ -34,7 +34,6 @@ public class HashMap<K, V> {
         return table[index].value;
     }
 
-
     public V remove(K key) {
         int index = findSlot(key);
         if (table[index] == null || table[index].isDeleted) {
