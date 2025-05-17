@@ -78,4 +78,37 @@ public class BinarySearch {
         return -1;
     }
 
+    public int minimumRateToEatBananas(int[] nums, int h) {
+        int maxVal = Integer.MIN_VALUE;
+
+        for (int n : nums) {
+            maxVal = Math.max(maxVal, n);
+        }
+        int low = 1;
+        int high = maxVal;
+
+        while (low <= high) {
+            int mid = low + (high - low) / 2;
+            int hours = getHours(nums, mid);
+
+            if (hours <= h) {
+                high = mid - 1;
+            } else {
+                low = mid + 1;
+            }
+        }
+
+        return low;
+    }
+
+    private int getHours(int[] nums, int num) {
+        int sum = 0;
+
+        for (int n : nums) {
+            sum += (int) Math.ceil((double) n / num);
+        }
+
+        return sum;
+    }
+
 }
