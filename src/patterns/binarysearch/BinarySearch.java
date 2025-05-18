@@ -4,6 +4,9 @@ import java.util.Arrays;
 
 public class BinarySearch {
 
+    // -------------------------------------------------
+    // 1. Classic Binary Search
+    // -------------------------------------------------
     private int search(int[] arr, int target) {
 
         int low = 0;
@@ -20,6 +23,9 @@ public class BinarySearch {
         return -1;
     }
 
+    // -------------------------------------------------
+    // 2. Lower Bound (First element >= target)
+    // -------------------------------------------------
     public int lowerBound(int[] nums, int x) {
         int left = 0;
         int right = nums.length - 1;
@@ -37,6 +43,10 @@ public class BinarySearch {
         return left;
     }
 
+
+    // -------------------------------------------------
+    // 3. Upper Bound (First element > target)
+    // -------------------------------------------------
     public int upperBound(int[] nums, int x) {
         int left = 0;
         int right = nums.length - 1;
@@ -53,6 +63,10 @@ public class BinarySearch {
         return left;
     }
 
+
+    // -------------------------------------------------
+    // 4. Search in Rotated Sorted Array
+    // -------------------------------------------------
     public int searchInRotatedArray(int[] nums, int k) {
         int left = 0;
         int right = nums.length - 1;
@@ -80,6 +94,9 @@ public class BinarySearch {
         return -1;
     }
 
+    // -------------------------------------------------
+    // 5. Binary Search on Answer – Koko Eating Bananas
+    // -------------------------------------------------
     public int minimumRateToEatBananas(int[] nums, int h) {
         int maxVal = Integer.MIN_VALUE;
 
@@ -113,6 +130,9 @@ public class BinarySearch {
         return sum;
     }
 
+    // -------------------------------------------------
+    // 6. Binary Search on Answer – Aggressive Cows
+    // -------------------------------------------------
     public int aggressiveCows(int[] nums, int k) {
         Arrays.sort(nums);
 
@@ -147,6 +167,9 @@ public class BinarySearch {
         return false;
     }
 
+    // -------------------------------------------------
+    // 7. Find Peak Element
+    // -------------------------------------------------
     public int findPeakElement(int[] arr) {
         int left = 0;
         int right = arr.length - 1;
@@ -162,6 +185,68 @@ public class BinarySearch {
         }
 
         return left;
+    }
+
+    // -------------------------------------------------
+    // 8. Median of Two Sorted Arrays (Hard)
+    // -------------------------------------------------
+    public double medianOfTwoSortedArrays(int[] arr1, int[] arr2) {
+        int n1 = arr1.length, n2 = arr2.length;
+
+        if (n1 > n2) return medianOfTwoSortedArrays(arr2, arr1);
+
+        int n = n1 + n2;
+
+        int left = (n1 + n2 + 1) / 2;
+
+        int low = 0, high = n1;
+        while (low <= high) {
+
+            int mid1 = (low + high) >>> 1;
+
+            int mid2 = left - mid1;
+
+            int l1 = (mid1 > 0) ? arr1[mid1 - 1] : Integer.MIN_VALUE;
+            int r1 = (mid1 < n1) ? arr1[mid1] : Integer.MAX_VALUE;
+            int l2 = (mid2 > 0) ? arr2[mid2 - 1] : Integer.MIN_VALUE;
+            int r2 = (mid2 < n2) ? arr2[mid2] : Integer.MAX_VALUE;
+
+            if (l1 <= r2 && l2 <= r1) {
+                if (n % 2 == 1) return Math.max(l1, l2);
+                else return (Math.max(l1, l2) + Math.min(r1, r2)) / 2.0;
+            }
+            else if (l1 > r2) {
+                high = mid1 - 1;
+            } else {
+                low = mid1 + 1;
+            }
+        }
+
+        return 0;
+    }
+
+
+    // -------------------------------------------------
+    // 9. Binary Search in 2D Matrix
+    // -------------------------------------------------
+    public boolean searchMatrix(int[][] mat, int target) {
+        int n = mat.length;
+        int m = mat[0].length;
+
+        int low = 0, high = n * m - 1;
+
+        while (low <= high) {
+            int mid = (low + high) / 2;
+
+            int row = mid / m;
+            int col = mid % m;
+
+            if (mat[row][col] == target) return true;
+            else if (mat[row][col] < target) low = mid + 1;
+            else high = mid - 1;
+        }
+
+        return false;
     }
 
 }
