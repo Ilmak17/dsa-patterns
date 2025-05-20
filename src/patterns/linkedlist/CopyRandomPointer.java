@@ -1,4 +1,4 @@
-package patterns.recursion;
+package patterns.linkedlist;
 
 class Node {
     int val;
