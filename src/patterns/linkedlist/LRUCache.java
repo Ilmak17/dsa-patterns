@@ -6,8 +6,8 @@ import java.util.Map;
 class LRUNode {
     int key;
     int val;
-    LRUNode next;
-    LRUNode prev;
+    DoublyLinkedList next;
+    DoublyLinkedList prev;
 
     public LRUNode(int key, int val) {
         this.key = key;
@@ -16,23 +16,23 @@ class LRUNode {
 }
 
 class LRUCache {
-    private final Map<Integer, LRUNode> cache;
+    private final Map<Integer, DoublyLinkedList> cache;
     private final int capacity;
-    private final LRUNode right;
-    private final LRUNode left;
+    private final DoublyLinkedList right;
+    private final DoublyLinkedList left;
 
     public LRUCache(int capacity) {
         this.capacity = capacity;
         this.cache = new HashMap<>();
-        this.right = new LRUNode(0, 0);
-        this.left = new LRUNode(0, 0);
+        this.right = new DoublyLinkedList(0, 0);
+        this.left = new DoublyLinkedList(0, 0);
         this.left.next = this.right;
         this.right.prev = this.left;
     }
 
     public int get(int key) {
         if (cache.containsKey(key)) {
-            LRUNode node = cache.get(key);
+            DoublyLinkedList node = cache.get(key);
             remove(node);
             insert(node);
 
@@ -47,28 +47,28 @@ class LRUCache {
             remove(cache.get(key));
             cache.remove(key);
         }
-        LRUNode newNode = new LRUNode(key, value);
+        DoublyLinkedList newNode = new DoublyLinkedList(key, value);
         cache.put(key, newNode);
         insert(newNode);
 
         if (cache.size() > capacity) {
-            LRUNode lastNode = left.next;
+            DoublyLinkedList lastNode = left.next;
             remove(lastNode);
             cache.remove(lastNode.key);
         }
     }
 
-    private void insert(LRUNode node) {
-        LRUNode prev = right.prev;
+    private void insert(DoublyLinkedList node) {
+        DoublyLinkedList prev = right.prev;
         prev.next = node;
         node.prev = prev;
         right.prev = node;
         node.next = right;
     }
 
-    private void remove(LRUNode node) {
-        LRUNode prev = node.prev;
-        LRUNode next = node.next;
+    private void remove(DoublyLinkedList node) {
+        DoublyLinkedList prev = node.prev;
+        DoublyLinkedList next = node.next;
         prev.next = next;
         next.prev = prev;
     }
