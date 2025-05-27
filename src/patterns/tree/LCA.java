@@ -12,4 +12,19 @@ public class LCA {
 
         return left != null ? left : right;
     }
+
+    public TreeNode findLCABinarySearchTree(TreeNode root, int p, int q) {
+
+        while (root != null) {
+            if (root.val > p && root.val > q) {
+                root = root.left;
+            } else if (root.val < p && root.val < q) {
+                root = root.right;
+            } else {
+                return root;
+            }
+        }
+
+        return new TreeNode(-1);
+    }
 }
