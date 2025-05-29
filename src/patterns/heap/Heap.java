@@ -2,7 +2,6 @@ package patterns.heap;
 
 public class Heap {
     public void heapify(int[] nums, int ind, int val) {
-
         if (nums[ind] > val) {
             nums[ind] = val;
             heapifyUp(nums, ind);
