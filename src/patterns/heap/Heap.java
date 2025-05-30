@@ -9,7 +9,7 @@ public class Heap {
             nums[ind] = val;
             heapifyDown(nums, ind);
         }
-    }f
+    }
 
     private void heapifyDown(int[] arr, int ind) {
         int n = arr.length;
