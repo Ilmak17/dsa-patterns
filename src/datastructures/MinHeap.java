@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MinHeap {
-
     private final List<Integer> arr;
 
     public MinHeap() {
