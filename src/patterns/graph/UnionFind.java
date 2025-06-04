@@ -2,8 +2,8 @@ package patterns.graph;
 
 public class UnionFind {
 
-    private int[] parent;
-    private int[] rank;
+    private final int[] parent;
+    private final int[] rank;
 
     public UnionFind(int n) {
         this.parent = new int[n];
