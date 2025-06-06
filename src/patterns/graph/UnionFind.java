@@ -37,3 +37,32 @@ public class UnionFind {
         }
     }
 }
+
+class UnionFindPatterns {
+    public boolean hasCycle(int[][] edges, int n) {
+        UnionFind uf = new UnionFind(n);
+        for (int[] edge : edges) {
+            int u = edge[0], v = edge[1];
+            if (uf.find(u) == uf.find(v)) {
+                return true; // cycle
+            }
+            uf.union(u, v);
+        }
+        return false;
+    }
+
+    public int countComponents(int n, int[][] edges) {
+        UnionFind uf = new UnionFind(n);
+        int components = n;
+
+        for (int[] edge : edges) {
+            int u = edge[0], v = edge[1];
+            if (uf.find(u) != uf.find(v)) {
+                uf.union(u, v);
+                components--;
+            }
+        }
+
+        return components;
+    }
+}
