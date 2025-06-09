@@ -52,4 +52,42 @@ public class ShortestPath {
 
         return dist;
     }
+
+    public int[] bellmanFord(int n, List<List<Integer>> edges, int start) {
+
+        int[] dist = new int[n];
+        Arrays.fill(dist, (int) 1e9);
+
+        dist[start] = 0;
+
+        for (int i = 0; i < n - 1; i++) {
+            for (List<Integer> it : edges) {
+                int u = it.get(0);
+                int v = it.get(1);
+                int wt = it.get(2);
+
+                if (dist[u] != 1e9 &&
+                        dist[u] + wt < dist[v]) {
+
+                    dist[v] = dist[u] + wt;
+                }
+            }
+        }
+
+        for (List<Integer> it : edges) {
+            int u = it.get(0);
+            int v = it.get(1);
+            int wt = it.get(2);
+
+            if (dist[u] != 1e9 &&
+                    dist[u] + wt < dist[v]) {
+
+                return new int[]{-1};
+            }
+        }
+
+        return dist;
+    }
+
+
 }
