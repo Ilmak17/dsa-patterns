@@ -25,7 +25,6 @@ public class LIS {
 
     public int lengthOfLIS(int[] nums) {
         int[] dp = new int[nums.length];
-
         dp[0] = 1;
         int maxLength = 1;
         for (int i = 0; i < nums.length; i++) {
