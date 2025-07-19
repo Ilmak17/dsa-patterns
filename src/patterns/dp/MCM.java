@@ -38,6 +38,7 @@ public class MCM {
 
         cuts.add(n);
         cuts.add(0);
+
         Collections.sort(cuts);
 
         int[][] dp = new int[c + 2][c + 2];
